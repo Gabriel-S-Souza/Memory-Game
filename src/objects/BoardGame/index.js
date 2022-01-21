@@ -1,8 +1,8 @@
 import "./style.css"
 import cardGame from "../../components/CardGame"
 
-function boardGame(cards) {
-    const $htmlContentBoardGame = cardGame().repeat(cards)
+function boardGame(cardNumber) {
+    const $htmlContentBoardGame = cardGame().repeat(cardNumber)
     return `
         <section class="board-game">
             ${$htmlContentBoardGame}
