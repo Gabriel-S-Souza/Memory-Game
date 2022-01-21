@@ -1,5 +1,5 @@
 html, body {
-    font-size: 10px; Colocando um tamanho de fonte base, assim o rem utilizado na página será com base neste tamanho
+    font-size: 10px; /*Colocando um tamanho de fonte base, assim o rem utilizado na página será com base neste tamanho */
     height: 100%;
 }
 
