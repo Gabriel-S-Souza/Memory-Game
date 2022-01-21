@@ -2,7 +2,7 @@ import "./src/styles/settings/colors.css"
 import "./src/styles/generic/generic.css"
 import "./src/styles/elements/base.css"
 import boardGame from "./src/objects/BoardGame"
-import playerGame from "./src/components/PlayerName"
+import playerGame from "./src/components/PlayerGame"
 
 const $root = document.querySelector("#root")
 
