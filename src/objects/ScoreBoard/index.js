@@ -1,3 +1,4 @@
+import "./style.css"
 import playerGame from "../../components/PlayerGame"
 
 function scoreBoard() {
