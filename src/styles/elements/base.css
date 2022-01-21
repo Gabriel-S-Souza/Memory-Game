@@ -1,6 +1,13 @@
+html, body {
+    font-size: 10px; Colocando um tamanho de fonte base, assim o rem utilizado na página será com base neste tamanho
+    height: 100%;
+}
+
 body {
     background-color: var(--color-purple);
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
+    font-family: "Lucida Console", Courier, monospace;
+    font-weight: bold;
 }
