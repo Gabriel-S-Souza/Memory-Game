@@ -1,7 +1,7 @@
 import "./style.css"
 
 function playerGame(player) {
-    return `
+    return /*html*/`
         <p class="player-name">${player}</p>
     `
 }
