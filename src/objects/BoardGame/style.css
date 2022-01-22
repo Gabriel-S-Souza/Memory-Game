@@ -2,4 +2,5 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
+    perspective: 300px; /*O quao longe o observador está*/
 }

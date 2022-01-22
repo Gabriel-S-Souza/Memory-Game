@@ -2,9 +2,9 @@
     box-sizing: border-box;
     display: flex;
     align-items: center;
+    width: var(--width);
+    height: var(--height);
     justify-content: center;
-    width: 8em;
-    height: 10em;
     background-color: var(--color-dark);
     border: 2px solid var(--color-white);
 }
@@ -12,5 +12,4 @@
 article img, svg {
     color: var(--color-white);
     width: 80%;
-
 }

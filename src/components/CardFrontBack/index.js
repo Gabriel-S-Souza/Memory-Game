@@ -1,16 +1,15 @@
-import cardGame from "../CardGame";
+import "./style.css"
+import cardGame from "../CardGame"
 
 function cardFrontBack() {
     return /*html*/`
         <article class="card-front-back">
-            ${cardGame("javascript")}
-            ${cardGame("java")}
-            ${cardGame("kotlin")}
-            ${cardGame("github")}
-            ${cardGame("python")}
-            ${cardGame("sql")}
-            ${cardGame("css")}
-            ${cardGame("php")}
+            <div class="card -front">
+                ${cardGame("")}
+            </div>
+            <div class="card -back">
+                ${cardGame("java")}
+            </div>
         </article>
     `
 }
