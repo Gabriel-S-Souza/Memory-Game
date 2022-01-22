@@ -5,6 +5,7 @@ function scoreBoard() {
     return /*html*/`
         <header class="score-board">
             ${playerGame("Player1")}
+            <span>VS</span>
             ${playerGame("Player2")}
         </header>
     `
