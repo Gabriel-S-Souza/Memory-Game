@@ -1,7 +1,7 @@
 import "./style.css"
 import cardFrontBack from "../../components/CardFrontBack"
 
-function shufflesCards(contentCards) {
+function shufflesCards(contentCards, number) {
     let newContentCards = contentCards
     let contentCardsShuffled = []
     function getRandomIntInclusive(min, max) {
@@ -10,9 +10,16 @@ function shufflesCards(contentCards) {
         return Math.random() * (max - min) + min
     }
 
-    for (let index = 0; index < contentCards.length; index++) {
-        let randomCard = newContentCards[getRandomIntInclusive(0, newContentCards.length).toFixed()]
-        randomCard != undefined ? contentCardsShuffled.push(randomCard) : index - 1
+    for (var i = 0; i < number * 2; i++) {
+        let index = [getRandomIntInclusive(0, newContentCards.length).toFixed()]
+        let randomCard = newContentCards[index]
+        if(randomCard != undefined) {
+            contentCardsShuffled.push(randomCard)
+            newContentCards.splice(index, 1)
+        } else {
+            i = i - 1
+        }
+        console.log(randomCard)
     }
     return contentCardsShuffled.join('')
 }
@@ -24,11 +31,11 @@ function boardGame(number) {
         let currentCard = cardFrontBack()
         $htmlContentBoardGame.push(currentCard)
         $htmlContentBoardGame.push(currentCard)
-        console.log(count, currentCard)
         count++
         return boardGame(number)
     } else {
-        let $boardGameShuffled = shufflesCards($htmlContentBoardGame)
+        
+        let $boardGameShuffled = shufflesCards($htmlContentBoardGame, number)
         return '<section class="board-game">' + $boardGameShuffled + "</section>"
     }
 }
