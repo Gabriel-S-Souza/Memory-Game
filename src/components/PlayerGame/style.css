@@ -4,14 +4,24 @@
     box-sizing: border-box;
     align-items: center;
     width: 40%;
-    height: 3rem;
+    height: 5rem;
+    border: 1px solid var(--color-purple);
     border-radius: 8px;
     padding: 0 8px 0 8px;
     box-shadow: 0 0 4px 2px #00000022;
 }
 
+@keyframes appear {
+    from {
+        border-bottom: 3px solid var(--color-success-opacity);
+    }
+    to {
+        border-bottom: 3px solid var(--color-success);
+    }
+    
+}
 .wrapper-player.select {
-    border-bottom: 3px solid var(--color-success);
+    animation: appear .4s forwards ease-in-out;
 }
 
 .player-name {
@@ -28,7 +38,7 @@
     background: var(--color-light);
 }
 
-.wrapper-player .score.one {
+.wrapper-player .score.active {
     background: var(--color-success);
 }
 

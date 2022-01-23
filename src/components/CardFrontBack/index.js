@@ -23,14 +23,11 @@ function getIconNames() {
         }
 }
 
-window.cardFrontBack = {}
-window.cardFrontBack.handleClick = (event) => {
-    const $origin = event.target.closest(".card-front-back").classList.toggle("active")
-}
+let id = 0
 
 function cardFrontBack() {
     let $htmlCardsFrontBack = /*html*/`
-        <article class="card-front-back" onclick="cardFrontBack.handleClick(event)">
+        <article id=${id} class="card-front-back" onclick="cardFrontBack.handleClick(event)">
             <div class="card -front">
                 ${cardGame("")}
             </div>
@@ -39,6 +36,7 @@ function cardFrontBack() {
             </div>
         </article>
     `
+    id++
     return $htmlCardsFrontBack
 }
 

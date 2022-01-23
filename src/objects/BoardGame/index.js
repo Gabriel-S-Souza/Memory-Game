@@ -19,7 +19,6 @@ function shufflesCards(contentCards, number) {
         } else {
             i = i - 1
         }
-        console.log(randomCard)
     }
     return contentCardsShuffled.join('')
 }
