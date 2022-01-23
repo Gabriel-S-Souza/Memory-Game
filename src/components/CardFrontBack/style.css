@@ -16,14 +16,14 @@
 .card-front-back > .card {
     position: absolute;
     backface-visibility: hidden;
-    box-shadow: 10px 4px 16px rgba(0, 0, 0, 30%);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 30%);
 }
 
 .card-front-back > .card.-back{
     transform: rotateY(180deg);
-} 
+}
 
 .card-front-back .-back .card-game {
-    background-color: var(--color-success);
-    box-shadow: 10px 4px 16px rgba(0, 0, 0, 25%);
+    background-color: #2A2B2E11;
+    
 }
