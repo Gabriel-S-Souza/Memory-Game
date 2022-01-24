@@ -3,7 +3,6 @@ import "./src/styles/generic/generic.css"
 import "./src/styles/elements/base.css"
 import scoreBoard from "./src/objects/ScoreBoard"
 import boardGame from "./src/objects/BoardGame"
-import cardGame from "./src/components/CardGame"
 import modalOpitionsBoard from "./src/components/ModalOptionsBoard"
 
 const $root = document.querySelector("#root")
