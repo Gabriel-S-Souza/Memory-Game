@@ -48,3 +48,11 @@
     width: 1.3rem;
     background: #2A2B2E88;
 }
+
+.wrapper-player:last-child {
+    display: none;
+}
+
+span {
+    display: none;
+}

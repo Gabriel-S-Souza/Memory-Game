@@ -11,13 +11,14 @@ let player1 = {}
 let player2 = {}
 let cardActive
 let turn = 1
-let cards = document.querySelectorAll(".card-front-back")
+let mode
 
 $root.insertAdjacentHTML(
     "beforeend",
     `
     ${scoreBoard()}
     ${boardGame(8)}
+    ${modalOpitionsBoard()}
     `
 )
 
@@ -25,19 +26,13 @@ function initialization() {
     setTimeout(function() {
         player1.html = selector('.wrapper-player.one')
         player2.html = selector('.wrapper-player.two')
-        $root.insertAdjacentHTML(
-            "beforeend",
-            `
-            ${modalOpitionsBoard()}
-            `
-        )
     }, 150)
 }
 
 initialization()
 
 window.cardFrontBack = {}
-window.cardFrontBack.handleClick = (event) => {
+window.cardFrontBack.handleClickCards = (event) => {
     let thisCard = event.target.closest(".card-front-back")
     thisCard.className = "card-front-back active"
     thisCard.setAttribute("onclick", "")
@@ -52,7 +47,7 @@ window.cardFrontBack.handleClick = (event) => {
             turn = 1
             selector(".card-front-back.disabled", "all").forEach(card => {
                 console.log("iterei para COLOCAR o onclick")
-                card.setAttribute("onclick", "cardFrontBack.handleClick(event)")
+                card.setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
             })
         } else { 
             setTimeout(function() {
@@ -60,11 +55,11 @@ window.cardFrontBack.handleClick = (event) => {
                 thisCard.className = "card-front-back disabled"
                 playerActive(false)
                 turn = 1
-                thisCard.setAttribute("onclick", "cardFrontBack.handleClick(event)")
-                cardActive.setAttribute("onclick", "cardFrontBack.handleClick(event)")
+                thisCard.setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
+                cardActive.setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
                 selector(".card-front-back.disabled", "all").forEach(card => {
                     console.log("iterei para COLOCAR o onclick")
-                    card.setAttribute("onclick", "cardFrontBack.handleClick(event)")
+                    card.setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
                 })
             }, 950)
         }
@@ -83,3 +78,12 @@ const selector = (seletor, all = "") => {
     else return document.querySelectorAll(`${seletor}`)
 }
 
+window.handleClick = {}
+window.handleClick.setMode = (event) => {
+    const $origin = event.target.closest('.button-options-players')
+    mode = $origin.id
+    selector(".modal-container").className = ("modal-container active removed")
+    setTimeout(()=>{
+        selector(".modal-container").className = ("modal-container")
+     }, 500)
+}
