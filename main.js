@@ -4,6 +4,7 @@ import "./src/styles/elements/base.css"
 import scoreBoard from "./src/objects/ScoreBoard"
 import boardGame from "./src/objects/BoardGame"
 import modalOpitionsBoard from "./src/components/ModalOptionsBoard"
+import audioGame from "./src/components/AudioGame"
 
 const $root = document.querySelector("#root")
 let player1 = {score: 0, html: ""}
@@ -18,6 +19,7 @@ $root.insertAdjacentHTML(
     `
     ${scoreBoard()}
     ${boardGame(8)}
+    ${audioGame()}
     ${modalOpitionsBoard()}
     `
 )
@@ -93,6 +95,7 @@ window.handleClick.setMode = (event) => {
 function HandleSinglePlayer(boolean) {
     if(boolean == true) {
         selector(`#score${player1.score += 1}`).classList.add("active")
+        selector("audio").play()
     }
 }
 
