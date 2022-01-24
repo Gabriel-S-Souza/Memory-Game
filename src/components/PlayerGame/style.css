@@ -1,14 +1,15 @@
 .wrapper-player {
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     box-sizing: border-box;
-    align-items: center;
+    align-items: flex-start;
     width: 40%;
     height: 5rem;
     border: 1px solid #2A2B2E44;
-    border-radius: 8px;
+    border-bottom: 1px solid #2A2B2E00;
+    border-radius: 8px 8px 0 0;
     padding: 0 8px 0 8px;
-    box-shadow: 0 0 4px 2px #00000022;
 }
 
 @keyframes appear {
@@ -22,7 +23,9 @@
 }
 
 .wrapper-player.select {
-    animation: appear .4s forwards ease-in-out;
+    animation: appear .2s forwards ease-in-out;
+    box-shadow: 0 0 4px 2px #00000022;
+    border-radius: 8px; 
 }
 
 .player-name {
@@ -34,8 +37,8 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 1.6rem;
-    width: 5rem;
+    height: 0.4rem;
+    width: 100%;
     background: var(--color-light);
 }
 
@@ -48,7 +51,7 @@
 }
 
 .score {
-    height: 1.3rem;
-    width: 1.3rem;
-    background: #2A2B2E88;
+    height: 0.3rem;
+    width: 1.5rem;
+    background: var(--color-light);
 }

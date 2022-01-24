@@ -9,7 +9,8 @@
     border: 2px solid var(--color-white);
 }
 
-article img, svg {
+.bi.bi-code-slash {
     color: var(--color-white);
-    width: 80%;
+    font-size: 5em;
 }
+

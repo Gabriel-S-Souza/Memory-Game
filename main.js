@@ -6,8 +6,9 @@ import boardGame from "./src/objects/BoardGame"
 import modalOpitionsBoard from "./src/components/ModalOptionsBoard"
 
 const $root = document.querySelector("#root")
-let player1 = {}
-let player2 = {}
+let player1 = {score: 0, html: ""}
+let player2 = {score: 0, html: ""}
+let playerActive
 let cardActive
 let turn = 1
 let mode
@@ -35,29 +36,27 @@ window.cardFrontBack.handleClickCards = (event) => {
     let thisCard = event.target.closest(".card-front-back")
     thisCard.className = "card-front-back active"
     thisCard.setAttribute("onclick", "")
-    console.log(turn)
     if(turn == 2) {
         selector(".card-front-back", "all").forEach(card => {
-            console.log("iterei para retirar o onclick")
             card.setAttribute("onclick", "")
         })
         if(thisCard.id == cardActive.id) {
-            playerActive(true)
             turn = 1
             selector(".card-front-back.disabled", "all").forEach(card => {
-                console.log("iterei para COLOCAR o onclick")
                 card.setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
             })
-        } else { 
             setTimeout(function() {
+                mode == "one" ? HandleSinglePlayer(true) : handleMultiPlayer()
+            }, 400)
+        } else {
+            setTimeout(function() {
+                mode == "one" ? HandleSinglePlayer(false) : handleMultiPlayer()
                 cardActive.className = "card-front-back disabled"
                 thisCard.className = "card-front-back disabled"
-                playerActive(false)
                 turn = 1
                 thisCard.setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
                 cardActive.setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
                 selector(".card-front-back.disabled", "all").forEach(card => {
-                    console.log("iterei para COLOCAR o onclick")
                     card.setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
                 })
             }, 950)
@@ -66,10 +65,6 @@ window.cardFrontBack.handleClickCards = (event) => {
         cardActive = thisCard
         turn += 1
     }
-}
-
-function playerActive(bolean) {
-
 }
 
 const selector = (seletor, all = "") => {
@@ -81,15 +76,26 @@ window.handleClick = {}
 window.handleClick.setMode = (event) => {
     const $origin = event.target.closest('.button-options-players')
     mode = $origin.id
-    
     selector(".modal-container").className = ("modal-container active removed")
     setTimeout(()=>{
         selector(".modal-container").className = ("modal-container")
         if(mode == "one") {
-            
-        } else {
-            selector(".wrapper-player.two").style.display = "flex";
-            selector("header span").style.display = "inline";
+            selector(".wrapper-player.one").classList.add("select")
+        } else if(mode == "two") {
+            selector(".wrapper-player.two").style.display = "flex"
+            selector("header span").style.display = "inline"
+            let playerDraw  = Math.round(Math.random())
+            selector(`.wrapper-player.${playerDraw == 0 ? "one" : "two"}`).classList.add("select")
         }
      }, 600)
+}
+
+function HandleSinglePlayer(boolean) {
+    if(boolean == true) {
+        selector(`#score${player1.score += 1}`).classList.add("active")
+    }
+}
+
+function handleMultiPlayer(boolean) {
+
 }
