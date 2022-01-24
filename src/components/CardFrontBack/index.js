@@ -27,7 +27,7 @@ let id = 0
 
 function cardFrontBack() {
     let $htmlCardsFrontBack = /*html*/`
-        <article id=${id} class="card-front-back" onclick="cardFrontBack.handleClick(event)">
+        <article id=${id} class="card-front-back disabled" onclick="cardFrontBack.handleClick(event)">
             <div class="card -front">
                 ${cardGame("")}
             </div>
