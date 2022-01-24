@@ -10,6 +10,44 @@
     background-color: #2A2B2E77;
 }
 
+@keyframes hiddenModalConteiner {
+    0% {
+        background-color: #2A2B2E77;
+    }
+    50% {
+        background-color: #2A2B2E33;
+    }
+    100% {
+        background-color: #2A2B2E00;
+    }
+}
+
+.modal-container.removed {
+    animation: hiddenModalConteiner .5s forwards;
+}
+
+@keyframes modalUp {
+    from {
+        transform: translate3d(0, 250%, 0);
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes modalDown {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 250%, 0);
+    }
+}
+
+
 .modal-container.active {
     display: flex;
 }
@@ -24,6 +62,11 @@
     width: 30rem;
     border-radius: 8px;
     border: 1px solid #2A2B2E99;
+    animation: modalUp .4s forwards;
+}
+
+.modal-container.removed .modal {
+    animation: modalDown .8s forwards;
 }
 
 .button-options-players {

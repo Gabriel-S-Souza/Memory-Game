@@ -82,8 +82,15 @@ window.handleClick = {}
 window.handleClick.setMode = (event) => {
     const $origin = event.target.closest('.button-options-players')
     mode = $origin.id
+    
     selector(".modal-container").className = ("modal-container active removed")
     setTimeout(()=>{
         selector(".modal-container").className = ("modal-container")
-     }, 500)
+        if(mode == "one") {
+            
+        } else {
+            selector(".wrapper-player.two").style.display = "flex";
+            selector("header span").style.display = "inline";
+        }
+     }, 600)
 }
