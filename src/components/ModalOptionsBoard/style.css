@@ -1,0 +1,50 @@
+.modal-container {
+    display: none;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A2B2E77;
+}
+
+.modal-container.active {
+    display: flex;
+}
+
+.modal-container .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    background-color: var(--color-white);
+    height: 20rem;
+    width: 30rem;
+    border-radius: 8px;
+    border: 1px solid #2A2B2E99;
+}
+
+.button-options-players {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    width: 8em;
+    background: none;
+    border: none;
+    font-family: "Lucida Console", Courier, monospace;
+    border-radius: 8px;
+    border: 1px solid #2A2B2E99;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 30%);
+}
+
+.button-options-players:active {
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 30%);
+    transform: translate3d(3px, 3px, 0)
+}
+
+button .bi {
+    font-size: 50px;
+}

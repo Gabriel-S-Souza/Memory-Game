@@ -4,6 +4,7 @@ import "./src/styles/elements/base.css"
 import scoreBoard from "./src/objects/ScoreBoard"
 import boardGame from "./src/objects/BoardGame"
 import cardGame from "./src/components/CardGame"
+import modalOpitionsBoard from "./src/components/ModalOptionsBoard"
 
 const $root = document.querySelector("#root")
 let player1 = {}
@@ -27,7 +28,7 @@ function initialization() {
         $root.insertAdjacentHTML(
             "beforeend",
             `
-            ${modalBoard()}
+            ${modalOpitionsBoard()}
             `
         )
     }, 150)
