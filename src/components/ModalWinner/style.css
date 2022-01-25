@@ -1,0 +1,58 @@
+.modal-winner-container {
+    display: none;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes modalWinnerUp {
+    0% {
+        transform: translate3d(0, 250%, 0);
+    }
+    20% {
+        transform: translate3d(0, 0, 0);
+    }
+    40% {
+        transform: translate3d(0, 0, 0);
+    }
+    60% {
+        transform: translate3d(0, 0, 0);
+    }
+    80% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 250%, 0);
+    }
+}
+
+.modal-winner-container.active {
+    display: flex;
+}
+
+.modal-winner-container .modal-winner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2em;
+    background-color: var(--color-white);
+    height: 20rem;
+    width: 30rem;
+    border-radius: 8px;
+    border: 1px solid #2A2B2E99;
+    animation: modalWinnerUp 2.6s forwards;
+}
+
+.modal-winner #title-modal-winner {
+    font-size: 2.2rem;
+    color: var(--color-success);
+}
+
+#trophy-icon {
+    width: 10rem;
+}

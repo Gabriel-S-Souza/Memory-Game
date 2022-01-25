@@ -5,6 +5,7 @@ import scoreBoard from "./src/objects/ScoreBoard"
 import boardGame from "./src/objects/BoardGame"
 import modalOpitionsBoard from "./src/components/ModalOptionsBoard"
 import audioGame from "./src/components/AudioGame"
+import modalWinner from "./src/components/ModalWinner"
 
 const $root = document.querySelector("#root")
 let player1 = {score: 0, html: ""}
@@ -21,6 +22,12 @@ $root.insertAdjacentHTML(
     ${boardGame(8)}
     ${audioGame()}
     ${modalOpitionsBoard()}
+    `
+)
+$root.insertAdjacentHTML(
+    "beforeend",
+    `
+    ${modalWinner()}
     `
 )
 
@@ -52,7 +59,6 @@ window.cardFrontBack.handleClickCards = (event) => {
             }, 400)
         } else {
             setTimeout(function() {
-                mode == "one" ? HandleSinglePlayer(false) : handleMultiPlayer()
                 cardActive.className = "card-front-back disabled"
                 thisCard.className = "card-front-back disabled"
                 turn = 1
@@ -95,7 +101,15 @@ window.handleClick.setMode = (event) => {
 function HandleSinglePlayer(boolean) {
     if(boolean == true) {
         selector(`#score${player1.score += 1}`).classList.add("active")
-        selector("audio").play()
+        selector("#positive-audio-notification").play()
+        if(player1.score == 8) {
+            console.log("score igual a 8")
+            selector(".modal-winner-container").classList.add("active")
+            selector("#win-audio").play()
+            setTimeout(()=>{
+                selector(".modal-winner-container").classList.remove("active")
+            }, 2600)
+        }
     }
 }
 
