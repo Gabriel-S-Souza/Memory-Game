@@ -8,8 +8,8 @@ import audioGame from "./src/components/AudioGame"
 import modalWinner from "./src/components/ModalWinner"
 
 const $root = document.querySelector("#root")
-let player1 = {score: 0, html: ""}
-let player2 = {score: 0, html: ""}
+let player1 = {score: 0, html: "", victories: 0}
+let player2 = {score: 0, html: "", victories: 0}
 let playerActive
 let cardActive
 let turn = 1
@@ -108,6 +108,12 @@ function HandleSinglePlayer(boolean) {
             selector("#win-audio").play()
             setTimeout(()=>{
                 selector(".modal-winner-container").classList.remove("active")
+                player1.victories += 1
+                console.log(player1.victories)
+                player1.score == 0
+                for (let i = 8; i > 0; i--) {
+                    selector(`#score${i}`).classList.remove("active")
+                }
             }, 2600)
         }
     }
