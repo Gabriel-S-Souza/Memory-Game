@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     box-sizing: border-box;
-    align-items: flex-start;
+    align-items: center;
     width: 40%;
     height: 5rem;
     border: 1px solid #2A2B2E44;
