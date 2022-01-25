@@ -56,7 +56,7 @@ window.cardFrontBack.handleClickCards = (event) => {
             })
             setTimeout(function() {
                 mode == "one" ? HandleSinglePlayer(true) : handleMultiPlayer()
-            }, 400)
+            }, 280)
         } else {
             setTimeout(function() {
                 cardActive.className = "card-front-back disabled"
@@ -111,7 +111,7 @@ function HandleSinglePlayer(boolean) {
                 selector("#wins-number").textContent = `${player1.victories}`
                 player1.score = 0
                 restart()
-            }, 2200)
+            }, 2500)
         }
     }
 }
@@ -133,8 +133,22 @@ function restart() {
                 }, 20*i)
             }) (i)
             setTimeout(()=>{
+                insertBoard()
                 cards[i].setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
-            }, 150)
+            }, 700)
         }
     }
+}
+
+function insertBoard() {
+    let scoreBoard = selector(".score-board")
+    let oldBoardGame = selector(".board-game")
+    oldBoardGame.remove()
+    let boardGame = boardGame(8)
+    // function insertAfter(referenceNode, newNode) {
+    //     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
+    // }
+    // setTimeout(()=>{
+    //     insertAfter(scoreBoard, boardGame)
+    // }, 500)
 }
