@@ -1,9 +1,13 @@
 html, body {
     font-size: 10px; /*Colocando um tamanho de fonte base, assim o rem utilizado na página será com base neste tamanho */
     height: 100%;
+    width: 100%;
 }
 
 body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--color-white);
     max-width: 100%;
     margin-left: auto;
@@ -15,7 +19,29 @@ body {
 #root {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     justify-content: center;
-    gap: 5rem;
+    align-items: center;
+    gap: 3rem;
+}
+
+@media (pointer: fine) {
+    html,
+    body {
+        font-size: 16px;
+
+    }
+    body {
+        margin-left: 10%;
+        margin-right: 10%;
+        max-width: 80%;
+    }
+
+    #root {
+        border: 2px solid #2A2B2E44;
+        border-radius: 8px;
+        height: fit-content;
+        min-height: 24em;
+    }
+
 }

@@ -121,7 +121,7 @@ function handleMultiPlayer(boolean) {
 }
 
 function restart() {
-    if(mode = "one") {
+    if(mode == "one") {
         for (let i = 8; i > 0; i--) {
             selector(`#score-one${i}`).classList.remove("active")
         }
@@ -141,14 +141,11 @@ function restart() {
 }
 
 function insertBoard() {
-    let scoreBoard = selector(".score-board")
     let oldBoardGame = selector(".board-game")
     oldBoardGame.remove()
-    let boardGame = boardGame(8)
-    // function insertAfter(referenceNode, newNode) {
-    //     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling)
-    // }
-    // setTimeout(()=>{
-    //     insertAfter(scoreBoard, boardGame)
-    // }, 500)
+    selector(".score-board").insertAdjacentHTML(
+        "afterend", `${(boardGame(8))}`
+    )
 }
+
+window.insertBoard = insertBoard

@@ -78,3 +78,10 @@
     width: 1.8rem;
     background: var(--color-light);
 }
+
+@media (pointer: fine) {
+    .wrapper-player {
+        width: 16rem;
+        height: 4rem;
+    }
+}

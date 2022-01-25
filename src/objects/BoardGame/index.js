@@ -33,7 +33,7 @@ function boardGame(number) {
         count++
         return boardGame(number)
     } else {
-        
+        count = 0
         let $boardGameShuffled = shufflesCards($htmlContentBoardGame, number)
         return '<section class="board-game">' + $boardGameShuffled + "</section>"
     }
