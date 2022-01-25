@@ -28,6 +28,29 @@
     border-radius: 8px; 
 }
 
+#wrapper-player-and-victories {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+#wrapper-player-and-victories div {
+    display: flex;
+    width: 2.5rem;
+    gap: .4rem;
+    text-align: right;
+    align-items: flex-start;
+    color: #2A2B2E99;
+    font-size: 1.5rem;
+}
+
+#wrapper-player-and-victories div .bi.bi-trophy {
+    font-size: 1.2rem;
+}
+
+
+
 .player-name {
     color: var(--color-dark);
     font-size: 1.5rem;

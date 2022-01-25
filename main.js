@@ -100,25 +100,41 @@ window.handleClick.setMode = (event) => {
 
 function HandleSinglePlayer(boolean) {
     if(boolean == true) {
-        selector(`#score${player1.score += 1}`).classList.add("active")
+        selector(`#score-one${player1.score += 1}`).classList.add("active")
         selector("#positive-audio-notification").play()
         if(player1.score == 8) {
-            console.log("score igual a 8")
             selector(".modal-winner-container").classList.add("active")
             selector("#win-audio").play()
             setTimeout(()=>{
                 selector(".modal-winner-container").classList.remove("active")
                 player1.victories += 1
-                console.log(player1.victories)
-                player1.score == 0
-                for (let i = 8; i > 0; i--) {
-                    selector(`#score${i}`).classList.remove("active")
-                }
-            }, 2600)
+                selector("#wins-number").textContent = `${player1.victories}`
+                player1.score = 0
+                restart()
+            }, 2200)
         }
     }
 }
 
 function handleMultiPlayer(boolean) {
 
+}
+
+function restart() {
+    if(mode = "one") {
+        for (let i = 8; i > 0; i--) {
+            selector(`#score-one${i}`).classList.remove("active")
+        }
+        const cards = selector(".card-front-back", "all")
+        for (let i = 0; i < cards.length; i++) {
+            (function(i) {
+                setTimeout(()=>{
+                    cards[i].className = "card-front-back disabled"
+                }, 20*i)
+            }) (i)
+            setTimeout(()=>{
+                cards[i].setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
+            }, 150)
+        }
+    }
 }
