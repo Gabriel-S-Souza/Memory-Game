@@ -132,6 +132,10 @@ function handleMultiPlayer() {
         let playerWinner
         if(player1.score > player2.score) playerWinner = player1
         else if(player1.score < player2.score) playerWinner = player2
+        else {
+            selector(".modal-winner #trophy-icon").setAttribute("src", "/src/icons/balanced.svg")
+            selector("#title-modal-winner").style = "color: #000;"
+        } 
         selector("#title-modal-winner").textContent = `${playerWinner != undefined ? playerWinner.name : "Empatou"} ${playerWinner != undefined ? "venceu!" : ""}`
         selector(".modal-winner-container").classList.add("active")
         selector("#win-audio").play()
@@ -140,6 +144,9 @@ function handleMultiPlayer() {
             if(playerWinner != undefined) {
                 playerWinner.victories += 1
                 selector(`.wins-number.${playerWinner.suffix}`).textContent = `${playerWinner.victories}`
+            } else {
+                selector(".modal-winner #trophy-icon").setAttribute("src", "/src/icons/trophy.svg")
+                selector("#title-modal-winner").style = "color: '';"
             }
             player1.score = 0
             player2.score = 0
