@@ -9,6 +9,10 @@
     border: 2px solid var(--color-white);
 }
 
+.card-game.icon  {
+    border: 1px solid #2A2B2E22;
+}
+
 .bi.bi-code-slash {
     color: var(--color-white);
     font-size: 5em;
