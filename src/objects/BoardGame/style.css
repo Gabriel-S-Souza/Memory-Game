@@ -10,6 +10,8 @@
 @media (pointer: fine) {
     .board-game {
         margin-bottom: 1em;
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
         width: 40rem;
         justify-content: space-evenly;
     }

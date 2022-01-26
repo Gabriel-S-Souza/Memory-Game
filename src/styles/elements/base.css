@@ -46,7 +46,7 @@ body {
         height: fit-content;
         gap: 2.5rem;
         background-color: var(--color-white);
-        box-shadow: 0 0 2px #2A2B2E22;
+        box-shadow: 0 0 8px #2A2B2E22;
         border-radius: 8px;
     }
 
