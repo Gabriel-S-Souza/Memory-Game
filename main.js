@@ -52,10 +52,10 @@ window.cardFrontBack.handleClickCards = (event) => {
         })
         if(thisCard.id == cardActive.id) {
             turn = 1
-            selector(".card-front-back.disabled", "all").forEach(card => {
-                card.setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
-            })
             setTimeout(function() {
+                selector(".card-front-back.disabled", "all").forEach(card => {
+                    card.setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
+                })
                 mode == "one" ? HandleSinglePlayer() : handleMultiPlayer()
             }, 280)
         } else {
@@ -130,7 +130,7 @@ function handleMultiPlayer() {
         let playerWinner
         if(player1.score > player2.score) playerWinner = player1
         else if(player1.score < player2.score) playerWinner = player2
-        else {
+        if(playerWinner == undefined) {
             selector(".modal-winner #trophy-icon").setAttribute("src", "/src/icons/balanced.svg")
             selector("#title-modal-winner").style = "color: #000;"
         } 
