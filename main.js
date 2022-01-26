@@ -47,8 +47,6 @@ window.cardFrontBack.handleClickCards = (event) => {
     thisCard.className = "card-front-back active"
     thisCard.setAttribute("onclick", "")
     if(turn == 2) {
-        console.log("Initi player " + initPlayer.name)
-        console.log("Player active " + playerActive.name)
         selector(".card-front-back", "all").forEach(card => {
             card.setAttribute("onclick", "")
         })
