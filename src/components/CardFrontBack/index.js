@@ -19,7 +19,6 @@ function getIconNames() {
         return getIconNames()
     } else {
         icons.splice(index, 1)
-        console.log(icons)
         return currentIcon
     }
 }
@@ -27,7 +26,6 @@ function getIconNames() {
 let id = 0
 
 function cardFrontBack() {
-    console.log(id)
     if(id > 7) {
         id = 0
         icons = [

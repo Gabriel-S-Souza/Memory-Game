@@ -8,7 +8,7 @@ function playerGame(player) {
         <article id="wrapper-player-and-victories">
             <h1 class="player-name">${player}</h1>
             <div>
-                <p id="wins-number"></p>
+                <p class="wins-number ${player == 'Player1' ? 'one' : 'two'}"></p>
                 <i class="bi bi-trophy"></i>
             <div>
         </article>
