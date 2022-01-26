@@ -46,7 +46,6 @@ window.cardFrontBack.handleClickCards = (event) => {
     thisCard.className = "card-front-back active"
     thisCard.setAttribute("onclick", "")
     if(turn == 2) {
-        console.log(playerActive.suffix)
         selector(".card-front-back", "all").forEach(card => {
             card.setAttribute("onclick", "")
         })
@@ -68,10 +67,12 @@ window.cardFrontBack.handleClickCards = (event) => {
                 selector(".card-front-back.disabled", "all").forEach(card => {
                     card.setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
                 })
-                let lastPlayer = playerActive
-                lastPlayer == player1 ? playerActive = player2 : playerActive = player1
-                selector(`.wrapper-player.${playerActive.suffix}`).classList.add("select")
-                selector(`.wrapper-player.${lastPlayer.suffix}`).classList.remove("select")
+                if( mode == "two") {
+                    let lastPlayer = playerActive
+                    lastPlayer == player1 ? playerActive = player2 : playerActive = player1
+                    selector(`.wrapper-player.${playerActive.suffix}`).classList.add("select")
+                    selector(`.wrapper-player.${lastPlayer.suffix}`).classList.remove("select")
+                }
             }, 950)
         }
     } else {
@@ -127,8 +128,7 @@ function handleMultiPlayer() {
         let playerWinner
         if(player1.score > player2.score) playerWinner = player1
         else if(player1.score < player2.score) playerWinner = player2
-        console.log(playerWinner)
-        selector("#title-modal-winner").textContent = `${playerWinner.name ?? "Empatou"} ${playerWinner != undefined ? "venceu!" : ""}`
+        selector("#title-modal-winner").textContent = `${playerWinner != undefined ? playerWinner.name : "Empatou"} ${playerWinner != undefined ? "venceu!" : ""}`
         selector(".modal-winner-container").classList.add("active")
         selector("#win-audio").play()
         setTimeout(()=>{
