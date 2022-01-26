@@ -11,6 +11,7 @@ const $root = document.querySelector("#root")
 let player1 = {score: 0, html: "", suffix: "one", name: "Player1", victories: 0}
 let player2 = {score: 0, html: "", suffix: "two", name: "Player2", victories: 0}
 let playerActive
+let initPlayer
 let cardActive
 let turn = 1
 let mode
@@ -46,6 +47,8 @@ window.cardFrontBack.handleClickCards = (event) => {
     thisCard.className = "card-front-back active"
     thisCard.setAttribute("onclick", "")
     if(turn == 2) {
+        console.log("Initi player " + initPlayer.name)
+        console.log("Player active " + playerActive.name)
         selector(".card-front-back", "all").forEach(card => {
             card.setAttribute("onclick", "")
         })
@@ -101,6 +104,7 @@ window.handleClick.setMode = (event) => {
             let playerDraw  = Math.round(Math.random())
             selector(`.wrapper-player.${playerDraw == 0 ? "one" : "two"}`).classList.add("select")
             playerDraw == 0 ? playerActive = player1 : playerActive = player2
+            initPlayer = playerActive
         }
      }, 600)
 }
@@ -139,9 +143,6 @@ function handleMultiPlayer() {
             }
             player1.score = 0
             player2.score = 0
-            playerActive == player1 ? playerActive = player2 : playerActive = player1
-            selector(`.wrapper-player.${playerActive == player1 ? "two" : "one"}`).classList.add("select")
-            selector(`.wrapper-player.${playerActive == player1 ? "one" : "two"}`).classList.remove("select")
             restart()
         }, 2500)
     }
@@ -167,15 +168,18 @@ function restart() {
         for (let i = 8; i > 0; i--) {
             selector(`#score-two${i}`).classList.remove("active")
         }
+        let lastPlayer = playerActive
+        initPlayer == player1 ? initPlayer = player2 : initPlayer = player1
+        playerActive = initPlayer
+        selector(`.wrapper-player.${lastPlayer.suffix}`).classList.remove("select")
+        selector(`.wrapper-player.${initPlayer.suffix}`).classList.add("select")
     }
 }
 
 function insertBoard() {
     let oldBoardGame = selector(".board-game")
     oldBoardGame.remove()
-    selector(".score-board").insertAdjacentHTML(
-        "afterend", `${(boardGame(8))}`
-    )
+    selector(".score-board").insertAdjacentHTML("afterend", `${(boardGame(8))}`)
 }
 
 window.insertBoard = insertBoard
