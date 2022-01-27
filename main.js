@@ -115,6 +115,7 @@ window.handleClick.setMode = (event) => {
 class RunTimer {
     second = 0
     handleSetInterval
+    record = 1000000
     formatTime(seconds) {
         let minutes = parseInt(seconds/60)
         let realSeconds = seconds%60
@@ -126,15 +127,19 @@ class RunTimer {
     init() {
         this.handleSetInterval = setInterval(() => {
             this.second += 1
-            selector("#time").textContent = this.formatTime(this.second)
+            selector(".info-time.time").textContent = this.formatTime(this.second)
         }, 1000)
     }
     pause() {
         clearInterval(this.handleSetInterval)
+        let lastTime = this.second
+        if(lastTime <= this.record) {
+            this.record = lastTime
+            //Colocar aqui um som de RECORD
+        }
+        selector(".info-time.record").textContent = this.record > 0 && this.record < 1000000 ? this.formatTime(this.record) : "00:00"
+        selector(".info-time.time").textContent = "00:00"
         this.second = 0
-        let record = this.formatTime(this.second)
-        selector("#time").textContent = "00:00"
-        console.log(record)
     }
 }
 
