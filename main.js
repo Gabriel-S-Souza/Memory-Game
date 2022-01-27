@@ -114,7 +114,7 @@ window.handleClick.setMode = (event) => {
 }
 class RunTimer {
     second = 0
-
+    handleSetInterval
     formatTime(seconds) {
         let minutes = parseInt(seconds/60)
         let realSeconds = seconds%60
@@ -124,10 +124,17 @@ class RunTimer {
     }
 
     init() {
-        setInterval(() => {
+        this.handleSetInterval = setInterval(() => {
             this.second += 1
             selector("#time").textContent = this.formatTime(this.second)
         }, 1000)
+    }
+    pause() {
+        clearInterval(this.handleSetInterval)
+        this.second = 0
+        let record = this.formatTime(this.second)
+        selector("#time").textContent = "00:00"
+        console.log(record)
     }
 }
 
@@ -137,6 +144,7 @@ function HandleSinglePlayer() {
     selector(`#score-one${player1.score += 1}`).classList.add("active")
     selector("#positive-audio-notification").play()
     if(player1.score == 8) {
+        timer.pause()
         modal.active()
         selector("#win-audio").play()
         setTimeout(()=>{
@@ -144,6 +152,7 @@ function HandleSinglePlayer() {
             selector(".wins-number").textContent = `${player1.victories}`
             player1.score = 0
             restart()
+            timer.init()
         }, 2500)
     }
 }
