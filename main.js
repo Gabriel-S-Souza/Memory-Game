@@ -7,9 +7,11 @@ import modalOpitionsBoard from "./src/components/ModalOptionsBoard"
 import audioGame from "./src/components/AudioGame"
 import modalWinner from "./src/components/ModalWinner"
 import timerGame from "./src/components/TimerGame"
+import Modal from "./src/components/ModalWinner"
 
 
 const $root = document.querySelector("#root")
+const modal = new Modal()
 let player1 = {score: 0, html: "", suffix: "one", name: "Player1", victories: 0}
 let player2 = {score: 0, html: "", suffix: "two", name: "Player2", victories: 0}
 let playerActive
@@ -30,7 +32,7 @@ $root.insertAdjacentHTML(
 $root.insertAdjacentHTML(
     "beforeend",
     `
-    ${modalWinner()}
+    ${modal.build("Você Venceu!")}
     `
 )
 
@@ -110,13 +112,21 @@ window.handleClick.setMode = (event) => {
         }
      }, 600)
 }
-let s = 0
-let m = 0
 class RunTimer {
+    second = 0
+
+    formatTime(seconds) {
+        let minutes = parseInt(seconds/60)
+        let realSeconds = seconds%60
+        let minutesFormated = minutes <= 9 ? "0" + minutes : minutes
+        let realSecondsFormated = realSeconds <= 9 ? "0" + realSeconds : realSeconds
+        return minutesFormated + ":" + realSecondsFormated
+    }
+
     init() {
         setInterval(() => {
-            s += 1
-            selector("#time").textContent = s
+            this.second += 1
+            selector("#time").textContent = this.formatTime(this.second)
         }, 1000)
     }
 }
@@ -127,10 +137,9 @@ function HandleSinglePlayer() {
     selector(`#score-one${player1.score += 1}`).classList.add("active")
     selector("#positive-audio-notification").play()
     if(player1.score == 8) {
-        selector(".modal-winner-container").classList.add("active")
+        modal.active()
         selector("#win-audio").play()
         setTimeout(()=>{
-            selector(".modal-winner-container").classList.remove("active")
             player1.victories += 1
             selector(".wins-number").textContent = `${player1.victories}`
             player1.score = 0
@@ -147,20 +156,20 @@ function handleMultiPlayer() {
         if(player1.score > player2.score) playerWinner = player1
         else if(player1.score < player2.score) playerWinner = player2
         if(playerWinner == undefined) {
-            selector(".modal-winner #trophy-icon").setAttribute("src", "/src/icons/balanced.svg")
-            selector("#title-modal-winner").style = "color: #000;"
-        } 
-        selector("#title-modal-winner").textContent = `${playerWinner != undefined ? playerWinner.name : "Empatou"} ${playerWinner != undefined ? "venceu!" : ""}`
-        selector(".modal-winner-container").classList.add("active")
+            //TODO: Regra de adicionar icone no modal
+            modal.changeIcon("/src/icons/balanced.svg")
+            modal.changeTextColor("#000")
+        }
+        modal.changeTitle(playerWinner.name != undefined ? playerWinner.name + " venceu!" : "Empatou")
+        modal.active()
         selector("#win-audio").play()
         setTimeout(()=>{
-            selector(".modal-winner-container").classList.remove("active")
             if(playerWinner != undefined) {
                 playerWinner.victories += 1
                 selector(`.wins-number.${playerWinner.suffix}`).textContent = `${playerWinner.victories}`
             } else {
-                selector(".modal-winner #trophy-icon").setAttribute("src", "/src/icons/trophy.svg")
-                selector("#title-modal-winner").style = "color: '';"
+                modal.changeIcon("/src/icons/trophy.svg")
+                modal.changeTextColor('')
             }
             player1.score = 0
             player2.score = 0
@@ -168,6 +177,8 @@ function handleMultiPlayer() {
         }, 2500)
     }
 }
+
+window.restartss = restart
 
 function restart() {
     for (let i = 8; i > 0; i--) {
@@ -190,10 +201,17 @@ function restart() {
             selector(`#score-two${i}`).classList.remove("active")
         }
         let lastPlayer = playerActive
+        // TODO: initPlayer incia a rodada
         initPlayer == player1 ? initPlayer = player2 : initPlayer = player1
         playerActive = initPlayer
         selector(`.wrapper-player.${lastPlayer.suffix}`).classList.remove("select")
         selector(`.wrapper-player.${initPlayer.suffix}`).classList.add("select")
+        setTimeout(function() {
+            modal.changeTitle(playerActive.name+" inicia o jogo")
+            modal.disable()
+            modal.active()
+        }, 1000)
+
     }
 }
 
