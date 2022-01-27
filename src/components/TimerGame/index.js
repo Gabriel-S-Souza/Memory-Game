@@ -1,9 +1,7 @@
 import "./style.css"
 
-
-
-function timer() {
-    return /*html*/`<output id="timer">00:43</output>`
+function timerGame() {
+    return /*html*/`<output id="timer"><p id="label-timer">cronômetro:</p><p id="time">00:00</p></output>`
 }
 
-export default timer()
+export default timerGame

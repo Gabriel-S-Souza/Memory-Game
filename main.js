@@ -6,6 +6,8 @@ import boardGame from "./src/objects/BoardGame"
 import modalOpitionsBoard from "./src/components/ModalOptionsBoard"
 import audioGame from "./src/components/AudioGame"
 import modalWinner from "./src/components/ModalWinner"
+import timerGame from "./src/components/TimerGame"
+
 
 const $root = document.querySelector("#root")
 let player1 = {score: 0, html: "", suffix: "one", name: "Player1", victories: 0}
@@ -96,6 +98,8 @@ window.handleClick.setMode = (event) => {
         selector(".modal-container").className = ("modal-container")
         if(mode == "one") {
             selector(".wrapper-player.one").classList.add("select")
+            insertBoard(".wrapper-player.one", "afterend", timerGame())
+            timer.init()
         } else if(mode == "two") {
             selector(".wrapper-player.two").style.display = "flex"
             selector("header span").style.display = "inline"
@@ -106,6 +110,18 @@ window.handleClick.setMode = (event) => {
         }
      }, 600)
 }
+let s = 0
+let m = 0
+class RunTimer {
+    init() {
+        setInterval(() => {
+            s += 1
+            selector("#time").textContent = s
+        }, 1000)
+    }
+}
+
+let timer = new RunTimer()
 
 function HandleSinglePlayer() {
     selector(`#score-one${player1.score += 1}`).classList.add("active")
@@ -165,7 +181,7 @@ function restart() {
             }, 20*i)
         }) (i)
         setTimeout(()=>{
-            insertBoard()
+            insertBoard(".score-board", "afterend", boardGame(8), ".board-game")
             cards[i].setAttribute("onclick", "cardFrontBack.handleClickCards(event)")
         }, 700)
     }
@@ -181,10 +197,12 @@ function restart() {
     }
 }
 
-function insertBoard() {
-    let oldBoardGame = selector(".board-game")
-    oldBoardGame.remove()
-    selector(".score-board").insertAdjacentHTML("afterend", `${(boardGame(8))}`)
+function insertBoard(referenceNode, position, insertObject, replaceObject = "") {
+    if(replaceObject != "") {
+        let replaceObj = selector(replaceObject)
+        replaceObj.remove()
+    }
+    selector(referenceNode).insertAdjacentHTML(position, `${(insertObject)}`)
 }
 
 window.insertBoard = insertBoard
