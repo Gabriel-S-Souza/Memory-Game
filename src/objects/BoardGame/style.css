@@ -1,6 +1,6 @@
 .board-game {
     display: flex;
-    width: fit-content;
+    width: 40em;
     justify-content: center;
     flex-wrap: wrap;
     gap: 0.8em;
@@ -12,7 +12,7 @@
         margin-bottom: 1em;
         padding-left: 0.4rem;
         padding-right: 0.4rem;
-        width: 40rem;
+        width: 40em;
         justify-content: space-evenly;
     }
 }

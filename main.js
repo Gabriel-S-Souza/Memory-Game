@@ -172,9 +172,11 @@ function handleMultiPlayer() {
         if(playerWinner == undefined) {
             //TODO: Regra de adicionar icone no modal
             modal.changeIcon("/src/icons/balanced.svg")
+            modal.changeTitle("Empatou")
             modal.changeTextColor("#000")
+            modal.active()
         }
-        modal.changeTitle(playerWinner.name != undefined ? playerWinner.name + " venceu!" : "Empatou")
+        modal.changeTitle(playerWinner != undefined ? playerWinner.name + " venceu!" : "Empatou")
         modal.active()
         selector("#win-audio").play()
         setTimeout(()=>{
@@ -222,7 +224,8 @@ function restart() {
         selector(`.wrapper-player.${initPlayer.suffix}`).classList.add("select")
         setTimeout(function() {
             modal.changeTitle(playerActive.name+" inicia o jogo")
-            modal.disable()
+            modal.changeTextColor("#000")
+            modal.changeIcon("/src/icons/info.svg")
             modal.active()
         }, 1000)
 

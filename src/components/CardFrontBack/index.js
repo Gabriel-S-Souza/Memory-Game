@@ -2,7 +2,7 @@ import "./style.css"
 import cardGame from "../CardGame"
 
 let icons = [
-    "angular", "bootstrap", "c", "csharp", "c++", "css", "dart", "flutter", "github", "html",
+    "angular", "bootstrap", "c", "csharp", "c++", "css", "dart", "flutter", "git", "github", "html",
     "java", "javascript", "linux", "kotlin", "next", "node", "php", "python", "react-native",
     "react", "sql", "swift", "typescript", "vue"
 ]

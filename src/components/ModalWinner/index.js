@@ -26,7 +26,7 @@ class Modal {
     }
 
     changeTextColor(color) {
-        this.selector("#title-modal-winner").style = "color: "+color+";"
+        this.selector("#title-modal-winner").style = `color: "${color}";`
     }
 
     active() {
